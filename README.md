@@ -1,6 +1,6 @@
 # Random Number Generator with TypeScript
 
-A convenient little random number generating helper. Both pseudo and quantum random numbers can be generated for fun and profit.
+A convenient little random number generating helper. Both pseudo and quantum random numbers can be generated for fun and profit. And yeah, there is TypeScript support!
 
 **gl hf =)** 
 
