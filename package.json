@@ -1,6 +1,6 @@
 {
   "name": "rng-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Random Number Generator in Typescript",
   "main": "index.js",
   "scripts": {
