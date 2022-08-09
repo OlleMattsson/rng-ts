@@ -1,13 +1,31 @@
 {
   "name": "rng-ts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Random Number Generator in Typescript",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["rng","qrng","anu","quantum","random","number","generator","typescript","ts"],
+  "keywords": [
+    "rng",
+    "qrng",
+    "anu",
+    "quantum",
+    "random",
+    "number",
+    "generator",
+    "typescript",
+    "ts"
+  ],
   "author": "Olle Mattsson <www.ollemattsson.com>",
   "license": "ISC",
-  "homepage": "https://github.com/OlleMattsson/rng-ts"
+  "homepage": "https://github.com/OlleMattsson/rng-ts",
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  }
 }
