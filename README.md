@@ -1,8 +1,8 @@
 # Random Number Generator with TypeScript
 
-A little helper for producing random numbers. Both pseudo and quantum random numbers can be produced for your convenience. 
+A convenient little random number generating helper. Both pseudo and quantum random numbers can be generated for fun and profit.
 
-**gl hf** 
+**gl hf =)** 
 
 ## Installation
 
