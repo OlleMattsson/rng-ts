@@ -8,5 +8,6 @@
   },
   "keywords": ["rng","qrng","anu","quantum","random","number","generator","typescript","ts"],
   "author": "Olle Mattsson <www.ollemattsson.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "homepage": "https://github.com/OlleMattsson/rng-ts"
 }
