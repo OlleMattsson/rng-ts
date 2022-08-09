@@ -100,7 +100,6 @@ const options = {
 const randomNumber = await rng.get(options)
 
 ```
----
 
 **DataType**
 
@@ -116,11 +115,21 @@ const options = {
 const randomNumber = await rng.get(options)
 ```
 
----
 
 **Mocked**  
 
 Mock the response of get(). This is useful for testing purposes. Only works when the Provider is AnuRNG.
+
+```
+const rng = new RNG({
+    provider: Provider.AnuQrng
+});
+const options = {
+    mocked: true
+}
+const randomNumber = await rng.get(options)
+```
+
 
 
 
