@@ -1,6 +1,6 @@
 {
   "name": "rng-ts",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Random Number Generator in Typescript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,7 @@
     "ts"
   ],
   "author": "Olle Mattsson <www.ollemattsson.com>",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/OlleMattsson/rng-ts",
   "devDependencies": {
     "ts-node": "^10.9.1",

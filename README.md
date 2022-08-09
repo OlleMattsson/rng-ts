@@ -44,19 +44,17 @@ Create a new Random Number Generator by initializing the RNG Object
 const rng = new RNG()
 ```
 
-When initializing RNG without any options, the default provider MathRand, which is an implementation of Math.random() is used.
+When initializing RNG without any options, the default provider is MathRand, which is an implementation of Math.random().
 
 
 ### Options
 
-**Provider**
+#### Provider
 
 Specify the method of random number production with the `provider`option
 
-The RNG constructor can be given a `Provider`. 
 - Provider.MathRand (default)
 - Provider.AnuQrng ([Quantum Random Numbers by ANu QRNG API](https://qrng.anu.edu.au/))
- - the response can be mocked for testing purposes: `get({mocked: true})`
 
 ```
 const rng = new RNG({
@@ -64,7 +62,6 @@ const rng = new RNG({
 });
 
 const randomNumber = await rng.get()
-const mockedRandomNumber = await rng.get({mocked: true})
 ```
 
 ## RNG.get()
@@ -89,7 +86,7 @@ get({dataType: DataType.uint16, mocked: false, count: 5})
 
 ### Options
 
-**Count**
+#### Count
 
 Specify the amount of random numbers
 
@@ -101,7 +98,7 @@ const randomNumber = await rng.get(options)
 
 ```
 
-**DataType**
+#### DataType
 
 Specify the type of random number
 
@@ -116,7 +113,7 @@ const randomNumber = await rng.get(options)
 ```
 
 
-**Mocked**  
+#### Mocked
 
 Mock the response of get(). This is useful for testing purposes. Only works when the Provider is AnuRNG.
 
