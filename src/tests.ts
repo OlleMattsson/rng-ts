@@ -1,4 +1,4 @@
-import { RNG, Provider, DataType } from "./";
+import { RNG, Provider, DataType } from ".";
 
 export async function runRNGTest() {
   console.log(`\n.: RNG Unit Tests:.`);
@@ -52,3 +52,5 @@ export async function runRNGTest() {
     )}`
   );
 }
+
+runRNGTest()

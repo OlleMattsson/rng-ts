@@ -1,4 +1,4 @@
-import { DataType } from "../index";
+import { DataType } from ".";
 
 type uint8 = number;
 type uint16 = number;

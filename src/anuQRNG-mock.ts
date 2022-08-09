@@ -1,5 +1,5 @@
 import { QRNGResponseData } from "./anuQRNG";
-import { DataType } from "../index";
+import { DataType } from ".";
 
 interface MockedDataResponse {
   get(dataType?: DataType): QRNGResponseData;

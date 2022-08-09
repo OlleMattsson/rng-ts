@@ -1,5 +1,5 @@
-import { fetchAnuQRNG } from "./src/anuQRNG";
-import { getMathRand } from "./src/mathRand";
+import { fetchAnuQRNG } from "./anuQRNG";
+import { getMathRand } from "./mathRand";
 
 export enum Provider {
   MathRand = "MathRand",

@@ -1,5 +1,5 @@
 import { AnuMock } from "./anuQRNG-mock";
-import { DataType } from "../index";
+import { DataType } from ".";
 
 type RandomNumbers = number[];
 
