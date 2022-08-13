@@ -11,7 +11,7 @@ export enum DataType {
   uint16 = "uint16"
 }
 
-interface getterParams {
+interface GetterParams {
   count?: number;
   dataType?: DataType;
   mocked?: boolean;
@@ -19,7 +19,7 @@ interface getterParams {
 
 export interface RNGInterface {
   get(count?: number, dataType?: DataType, mocked?: boolean): Promise<number[]>;
-  get({ count, dataType, mocked }: getterParams): Promise<number[]>;
+  get({ count, dataType, mocked }: GetterParams): Promise<number[]>;
 }
 
 export class RNG implements RNGInterface {
@@ -34,14 +34,33 @@ export class RNG implements RNGInterface {
     a2?: unknown,
     a3?: unknown
   ): Promise<number[]> {
-    let p: getterParams = {
+    
+    // default params
+    let p: GetterParams = {
       count: 1,
       dataType: DataType.uint8,
       mocked: false
     };
+
+    const validate = (p: GetterParams): void => {
+        const {count, dataType, mocked } = p
+        const countMin = 1;
+        const countMax = 1024;
+        if (count < countMin || count > countMax) {
+            throw new Error(`count must be >= ${countMin} && <= ${countMax}`);
+        }
+        if (dataType !== DataType.uint16 && dataType !== DataType.uint8) {
+            throw new Error(`invalid provider`);
+        }
+
+        if (typeof mocked !== "boolean") {
+            throw new Error(`property mocked must be of type boolean`);
+        }
+    }
+
     if (typeof a1 === "object") {
       p = {
-        ...(a1 as getterParams)
+        ...(a1 as GetterParams)
       };
     } else {
       p = {
@@ -51,6 +70,8 @@ export class RNG implements RNGInterface {
       };
     }
 
+    validate(p)
+
     switch (this.provider) {
       case Provider.MathRand:
         return getMathRand(p.count, p.dataType);
@@ -58,4 +79,5 @@ export class RNG implements RNGInterface {
         return await fetchAnuQRNG(p.count, p.dataType, p.mocked);
     }
   }
+  
 }
