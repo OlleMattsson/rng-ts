@@ -6,10 +6,11 @@
   "types": "dist/index.d.ts",
   "files": [
     "/dist"
-  ],  
+  ],
   "scripts": {
     "compile": "npx tsc",
-    "test": "npx ts-node src/tests.ts"
+    "test": "npx ts-node src/tests.ts",
+    "examples": "npx ts-node src/examples.ts"
   },
   "keywords": [
     "rng",
@@ -27,6 +28,7 @@
   "homepage": "https://github.com/OlleMattsson/rng-ts",
   "devDependencies": {
     "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.0",
     "typescript": "^4.7.4"
   }
 }
