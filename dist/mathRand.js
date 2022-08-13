@@ -18,3 +18,4 @@ function getMathRand(count = 1, dataType = _1.DataType.uint8) {
     return result;
 }
 exports.getMathRand = getMathRand;
+//# sourceMappingURL=mathRand.js.map

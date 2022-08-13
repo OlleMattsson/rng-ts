@@ -6,14 +6,14 @@ export declare enum DataType {
     uint8 = "uint8",
     uint16 = "uint16"
 }
-interface getterParams {
+interface GetterParams {
     count?: number;
     dataType?: DataType;
     mocked?: boolean;
 }
 export interface RNGInterface {
     get(count?: number, dataType?: DataType, mocked?: boolean): Promise<number[]>;
-    get({ count, dataType, mocked }: getterParams): Promise<number[]>;
+    get({ count, dataType, mocked }: GetterParams): Promise<number[]>;
 }
 export declare class RNG implements RNGInterface {
     constructor({ provider }?: {

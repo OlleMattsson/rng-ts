@@ -8,47 +8,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.runRNGTest = void 0;
+const node_test_1 = require("node:test");
+const node_assert_1 = __importDefault(require("node:assert"));
 const _1 = require(".");
-function runRNGTest() {
-    return __awaiter(this, void 0, void 0, function* () {
-        console.log(`\n.: RNG Unit Tests:.`);
-        // default Math.Rand() provider
-        const myRNG = new _1.RNG();
-        // ANU QRNG Provider
-        const myQRNG = new _1.RNG({ provider: _1.Provider.AnuQrng });
-        // get one uint8
-        console.log(`await myRNG.get(): ${yield myRNG.get()}`);
-        // get 5 uint8
-        console.log(`await myRNG.get({count: 5}): ${yield myRNG.get({ count: 5 })}`);
-        // get 5 uint8 (old api)
-        console.log(`await myRNG.get(5): ${yield myRNG.get(5)}`);
-        // get 5 uint16
-        console.log(`await myRNG.get({count: 5, dataType: DataType.uint16}): ${yield myRNG.get({
-            count: 5,
-            dataType: _1.DataType.uint16
-        })}`);
-        // get 5 uint16 quantum random numbers
-        // test turned off because fecthing numbers from ANu takes some time and slows down development,
-        /*
-        console.log(
-          `await myQRNG.get({count: 5, dataType: DataType.uint8, mocked: false}): ${await myQRNG.get(
-            {
-              count: 5,
-              dataType: DataType.uint8,
-              mocked: false
-            }
-          )}`
-        );
-        */
-        // get 5 uint16 quantom random numbers from the mocked response
-        console.log(`await myQRNG.get({count: 5, dataType: DataType.uint16, mocked: true}): ${yield myQRNG.get({
-            count: 5,
-            dataType: _1.DataType.uint16,
-            mocked: true
-        })}`);
+(0, node_test_1.describe)('The random number generator', () => {
+    const rng = new _1.RNG();
+    (0, node_test_1.it)("should have a getter", () => {
+        node_assert_1.default.ok(rng.get());
     });
-}
-exports.runRNGTest = runRNGTest;
-runRNGTest();
+});
+(0, node_test_1.describe)('RNG.get({number})', () => {
+    const rng = new _1.RNG();
+    (0, node_test_1.it)("should throw if count < 1", () => {
+        node_assert_1.default.throws(() => __awaiter(void 0, void 0, void 0, function* () { return yield rng.get({ count: 1 }); }), {
+            name: 'Error',
+            message: 'invalid count',
+        });
+    });
+    /*
+    it ("should fail if count > 1024", () => {
+        const rng = new RNG()
+        assert.throws(rng.get({count: 1025}));
+    })
+    */
+});
+//# sourceMappingURL=tests.js.map

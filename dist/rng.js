@@ -27,22 +27,41 @@ class RNG {
         this.provider = provider;
     }
     get(a1, a2, a3) {
+        var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function* () {
+            // default params
             let p = {
                 count: 1,
                 dataType: DataType.uint8,
                 mocked: false
+            };
+            console.log("default", p);
+            const validate = (p) => {
+                console.log("validate", p);
+                const { count, dataType, mocked } = p;
+                const countMin = 1;
+                const countMax = 1024;
+                if (count < countMin || count > countMax) {
+                    throw new Error(`invalid count`);
+                }
+                if (dataType !== DataType.uint16 && dataType !== DataType.uint8) {
+                    throw new Error(`invalid dataType`);
+                }
+                if (typeof mocked !== "boolean") {
+                    throw new Error(`property mocked must be of type boolean`);
+                }
             };
             if (typeof a1 === "object") {
                 p = Object.assign({}, a1);
             }
             else {
                 p = {
-                    count: a1,
-                    dataType: a2,
-                    mocked: a3
+                    count: (_a = a1) !== null && _a !== void 0 ? _a : 1,
+                    dataType: (_b = a2) !== null && _b !== void 0 ? _b : DataType.uint8,
+                    mocked: (_c = a3) !== null && _c !== void 0 ? _c : false
                 };
             }
+            validate(p);
             switch (this.provider) {
                 case Provider.MathRand:
                     return (0, mathRand_1.getMathRand)(p.count, p.dataType);
@@ -53,3 +72,4 @@ class RNG {
     }
 }
 exports.RNG = RNG;
+//# sourceMappingURL=rng.js.map
