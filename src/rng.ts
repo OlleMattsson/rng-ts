@@ -59,14 +59,16 @@ export class RNG implements RNGInterface {
     }
 
     if (typeof a1 === "object") {
+
       p = {
+        ...p,
         ...(a1 as GetterParams)
       };
     } else {
       p = {
-        count: a1 as number,
-        dataType: a2 as DataType,
-        mocked: a3 as boolean
+        count: a1 as number ?? 1,
+        dataType: a2 as DataType ?? DataType.uint8,
+        mocked: a3 as boolean ?? false
       };
     }
 
