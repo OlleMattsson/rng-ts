@@ -8,7 +8,8 @@
     "/dist"
   ],  
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "npx tsc",
+    "test": "npx ts-node src/tests.ts"
   },
   "keywords": [
     "rng",
