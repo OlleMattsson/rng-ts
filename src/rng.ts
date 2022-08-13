@@ -47,10 +47,10 @@ export class RNG implements RNGInterface {
         const countMin = 1;
         const countMax = 1024;
         if (count < countMin || count > countMax) {
-            throw new Error(`count must be >= ${countMin} && <= ${countMax}`);
+            throw new Error(`invalid count`);
         }
         if (dataType !== DataType.uint16 && dataType !== DataType.uint8) {
-            throw new Error(`invalid provider`);
+            throw new Error(`invalid dataType`);
         }
 
         if (typeof mocked !== "boolean") {
