@@ -76,7 +76,7 @@ describe('RNG.get({dataType})', () => {
 })
 
 describe('RNG.get({mocked})', async () => {
-    
+
     // Only works with AnuQrng
     const qrng = new RNG({provider: Provider.AnuQrng})
 
@@ -92,7 +92,7 @@ describe('RNG.get({mocked})', async () => {
         });        
     })
 
-    it("should return a mocked random number if true", async () => {
+    it("should return mocked random numbers if true", async () => {
         const randomNumbrs = await qrng.get({mocked:true})
         assert.strictEqual(randomNumbrs[0], 6)
     })
