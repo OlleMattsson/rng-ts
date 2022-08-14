@@ -1,35 +1,42 @@
 import test, {describe, it} from "node:test"
 import assert from "node:assert"
-import {RNG} from "."
+import {RNG, DataType, Provider} from "."
+const rng = new RNG()
 
 describe('new RNG()', () => {
-    const rng = new RNG()
 
-    it ("should have a getter", () => {
+    it ("should expose the .get() method", () => {
+        const methods = Object.getOwnPropertyNames(Object.getPrototypeOf(rng))       
+        assert.ok(methods.indexOf("get") > 0)
+    })
+
+    it ("should expose .get() with typeof object", () => {
         const typeofGet = typeof rng.get()
         const expectedTypeofGet = "object";
         assert.strictEqual(typeofGet, expectedTypeofGet)
     })
 
-    it ("should have a constructor and get method", () => {
-        const methods = Object.getOwnPropertyNames(Object.getPrototypeOf(rng))
-        const expectedMethods = ["constructor", "get"]
-        assert.deepEqual(methods, expectedMethods)
+})
+
+describe('RNG.get()', () => {
+
+    it("should return an array", async () => {
+        const randomNumbers = await rng.get()
+        assert.strictEqual(typeof randomNumbers, "object")
+    })
+    
+    it("should return an array with length of one", async () => {
+        const randomNumbers = await rng.get()
+        assert.strictEqual(randomNumbers.length, 1)
     })
 
+    it("should return an array with one number", async () => {
+        const randomNumbers = await rng.get()
+        assert.strictEqual(typeof randomNumbers[0], "number")
+    })
 })
 
-
-
-describe('RNG.get() should return one random number', () => {
-    const rng = new RNG()
-
-    assert.ok(rng.get());
-})
-
-describe('RNG.get({number})', () => {
-
-    const rng = new RNG()
+describe('RNG.get({count})', () => {
     
     it ("should throw if count < 1", () => {
         assert.rejects( async () => await rng.get({count: 0}), {
@@ -43,5 +50,50 @@ describe('RNG.get({number})', () => {
             name: 'Error',
             message: "invalid count"
         });
+    })
+
+    it("should return as many random numbers as specified by the count property", async () => {
+        const randomNumbers = await rng.get({count: 5})
+        assert.strictEqual(randomNumbers.length, 5)  
+    })
+})
+
+describe('RNG.get({dataType})', () => {
+
+    it("should accept allowed dataTypes", async () => {
+        assert.strictEqual(typeof await rng.get({dataType: DataType.uint8}), "object")
+        assert.strictEqual(typeof await rng.get({dataType: DataType.uint16}), "object")
+    })
+
+    it("should throw if dataType is invalid", async () => {
+        assert.rejects( async () => await rng.get({dataType: 1234}), {
+            name: 'Error',
+            message: "invalid dataType"
+        });        
+    })
+
+    it("should return the type of random number requested", {todo: true})
+})
+
+describe('RNG.get({mocked})', async () => {
+    
+    // Only works with AnuQrng
+    const qrng = new RNG({provider: Provider.AnuQrng})
+
+    it("should accept mocked: boolean", async () => {
+        assert.strictEqual(typeof await qrng.get({mocked: true}), "object")
+        assert.strictEqual(typeof await qrng.get({mocked: false}), "object")
+    })
+
+    it("should throw if mocked type is invalid", async () => {
+        assert.rejects( async () => await qrng.get({mocked: 1234}), {
+            name: 'Error',
+            message: 'property mocked must be of type boolean'
+        });        
+    })
+
+    it("should return a mocked random number if true", async () => {
+        const randomNumbrs = await qrng.get({mocked:true})
+        assert.strictEqual(randomNumbrs[0], 6)
     })
 })
