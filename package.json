@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "compile": "npx tsc",
-    "test": "npx ts-node src/tests.ts",
+    "tests": "npx ts-node src/tests.ts",
     "examples": "npx ts-node src/examples.ts"
   },
   "keywords": [
