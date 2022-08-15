@@ -72,7 +72,27 @@ describe('RNG.get({dataType})', () => {
         });        
     })
 
-    it("should return the type of random number requested", {todo: true})
+    it("should return the type of random number requested", async () => {
+        const isUint8 = (n) => {
+            if (typeof n === "number" && n >= 0 && n <= 255 ) {
+                return true
+            }
+            return false
+        }
+
+        const isUint16 = (n) => {
+            if (typeof n === "number" && n >= 0 && n <= 65535 ) {
+                return true
+            }
+            return false
+        }        
+
+        const randomNumbersUint8 = await rng.get({dataType: DataType.uint8})
+        const randomNumbersUint16 = await rng.get({dataType: DataType.uint16})
+
+        assert.strictEqual(isUint8(randomNumbersUint8[0]), true);
+        assert.strictEqual(isUint16(randomNumbersUint16[0]), true);
+    });
 })
 
 describe('RNG.get({mocked})', async () => {
