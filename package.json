@@ -10,6 +10,7 @@
   "scripts": {
     "compile": "npx tsc",
     "tests": "npx ts-node src/tests.ts",
+    "test:watch": "npx node-dev src/tests.ts",
     "examples": "npx ts-node src/examples.ts"
   },
   "keywords": [
